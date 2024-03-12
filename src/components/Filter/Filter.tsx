@@ -22,7 +22,7 @@ const Filter = (props: Props) => {
                     onChange={(_, data) => {
                         setFilters((prevState) => ({
                             ...prevState,
-                            [fieldName]: data?.value, // data это объект, который возвращает функция onChange: { name: undefined, value: 'qwefc' }
+                            [fieldName]: data?.value,
                         }))
                     }}
                 />

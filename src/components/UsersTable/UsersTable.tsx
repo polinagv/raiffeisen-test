@@ -3,14 +3,15 @@ import { CloseCancelX } from 'vienna.icons'
 import { Dispatch, SetStateAction } from 'react'
 import { orderBy } from 'lodash'
 
-import { User } from '../../common/types'
+import type { Loading, User } from '../../common/types'
 
 type Props = {
     users: User[]
     setUsers: Dispatch<SetStateAction<User[]>>
+    loading: Loading
 }
 
-const UserTable = ({ users, setUsers }: Props) => {
+const UserTable = ({ users, setUsers, loading }: Props) => {
     return (
         <Table
             data={users}
@@ -41,7 +42,7 @@ const UserTable = ({ users, setUsers }: Props) => {
                 {(user) => user.phone}
             </Table.Column>
 
-            {users.length === 0 && (
+            {users.length === 0 && loading !== 'pending' && (
                 <EmptyState>
                     <RoundIcon color="nice10">
                         <CloseCancelX />

@@ -26,3 +26,5 @@ export type User = {
         bs: string
     }
 }
+
+export type Loading = 'pending' | 'resolved' | 'rejected'

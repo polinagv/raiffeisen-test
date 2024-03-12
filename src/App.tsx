@@ -1,9 +1,7 @@
-function App() {
+import Users from './components/Users/Users'
 
-  return (
-    <>
-    </>
-  )
+function App() {
+    return <Users />
 }
 
 export default App

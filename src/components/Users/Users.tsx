@@ -33,39 +33,45 @@ const Users = () => {
     return (
         <Flex direction="column">
             <Flex.Item>
-                <Flex direction="row" gap="s5">
-                    <Filter
-                        filters={filters}
-                        setFilters={setFilters}
-                        fieldName="name"
-                        label="Искать по имени"
-                    />
-                    <Filter
-                        filters={filters}
-                        setFilters={setFilters}
-                        fieldName="email"
-                        label="Искать по email"
-                    />
-                    <Button
-                        design="accent"
-                        onClick={() => {
-                            fetchUsersData(filters)
-                        }}
-                    >
-                        Найти
-                    </Button>
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        fetchUsersData(filters)
+                    }}
+                >
+                    <Flex direction="row" gap="s5">
+                        <Filter
+                            filters={filters}
+                            setFilters={setFilters}
+                            fieldName="name"
+                            label="Искать по имени"
+                        />
+                        <Filter
+                            filters={filters}
+                            setFilters={setFilters}
+                            fieldName="email"
+                            label="Искать по email"
+                        />
+                        <Button
+                            design="accent"
+                            type="submit"
+                        >
+                            Найти
+                        </Button>
 
-                    <Button
-                        design="outline"
-                        onClick={() => {
-                            setFilters(initialFiltersValues)
-                            fetchUsersData(initialFiltersValues)
-                        }}
-                    >
-                        Сбросить
-                    </Button>
-                </Flex>
+                        <Button
+                            design="outline"
+                            onClick={() => {
+                                setFilters(initialFiltersValues)
+                                fetchUsersData(initialFiltersValues)
+                            }}
+                        >
+                            Сбросить
+                        </Button>
+                    </Flex>
+                </form>
             </Flex.Item>
+
             <Flex.Item>
                 <UsersTable
                     users={users}

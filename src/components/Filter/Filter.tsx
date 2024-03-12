@@ -18,6 +18,7 @@ const Filter = (props: Props) => {
             <FormField.Content>
                 <Input
                     placeholder="Введите значение"
+                    // @ts-ignore
                     value={filters[fieldName]}
                     onChange={(_, data) => {
                         setFilters((prevState) => ({

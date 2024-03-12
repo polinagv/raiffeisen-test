@@ -19,17 +19,22 @@ const Users = () => {
 
     // Юзеры будут перезапрашиваться при каждом изменении фильтра
     // можно оптимизировать, добавив debounce или изменив логику на поиск при явном нажатии на кнопку "Найти"
-    useEffect(() => {
+
+    const fetchUsersData = (filtersAttr: Filters) => {
         getUsersData().then(({ data }) => {
-            const filteredData = filterUsers(data, filters)
+            const filteredData = filterUsers(data, filtersAttr)
             setUsers(filteredData)
         })
-    }, [filters])
+    }
+
+    useEffect(() => {
+        fetchUsersData(filters)
+    }, [])
 
     return (
         <Flex direction="column">
             <Flex.Item>
-                <Flex direction="row" gap={'s5'}>
+                <Flex direction="row" gap="s5">
                     <Filter
                         filters={filters}
                         setFilters={setFilters}
@@ -45,7 +50,17 @@ const Users = () => {
                     <Button
                         design="accent"
                         onClick={() => {
+                            fetchUsersData(filters)
+                        }}
+                    >
+                        Найти
+                    </Button>
+
+                    <Button
+                        design="outline"
+                        onClick={() => {
                             setFilters(initialFiltersValues)
+                            fetchUsersData(initialFiltersValues)
                         }}
                     >
                         Сбросить

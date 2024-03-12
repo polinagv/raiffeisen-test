@@ -18,9 +18,7 @@ const UserTable = ({ users, setUsers }: Props) => {
                 if (!data?.field) {
                     return
                 }
-
                 const { field, direction } = data
-
                 setUsers((users) => orderBy(users, [field], [direction]))
             }}
         >
